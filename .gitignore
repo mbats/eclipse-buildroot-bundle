@@ -1,1 +1,2 @@
-org.buildroot.bundle/build/
+plugins/org.buildroot.bundle.update/target
+plugins/org.buildroot.bundle.feature/target

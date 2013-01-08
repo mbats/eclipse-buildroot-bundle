@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.buildroot.bundle.feature_1.0.0.qualifier.jar" id="org.buildroot.bundle.feature" version="1.0.0.qualifier">
+      <category name="org.buildroot.bundle"/>
+   </feature>
+   <category-def name="org.buildroot.bundle" label="Buildroot"/>
+</site>

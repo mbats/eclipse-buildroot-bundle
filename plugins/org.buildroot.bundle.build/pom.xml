@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2011 Obeo Melanie Bats <melanie.bats@obeo.fr> -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<prerequisites>
+		<maven>3.0</maven>
+	</prerequisites>
+
+	<groupId>org.buildroot.bundle.parent</groupId>
+	<artifactId>buildroot-bundle-parent</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>Buildroot Bundle</name>
+
+	<licenses>
+		<license>
+			<name>EPL</name>
+			<comments>
+       All rights reserved.
+
+      </comments>
+		</license>
+	</licenses>
+
+	<!-- Enabling Tycho -->
+	<properties>
+		<tycho-version>0.13.0</tycho-version>
+	</properties>
+
+	<modules>
+		<module>../org.buildroot.bundle.feature</module>
+		<module>../org.buildroot.bundle.update</module>
+	</modules>
+
+	<!-- Repositories providing the context of the build -->
+	<repositories>
+		<repository>
+			<id>Eclipse Juno</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/releases/juno</url>
+		</repository>
+		<repository>
+			<id>Eclipse Linux Tools</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/technology/linuxtools/update</url>
+		</repository>
+		<repository>
+			<id>Buildroot CDT Toolchains</id>
+			<layout>p2</layout>
+			<url>file:///home/melanie/buildroot/eclipse-buildroot-toolchain-plugin/org.buildroot.cdt.toolchain.update/target/repository</url>
+		</repository>
+		<repository>
+			<id>Pkg-config Eclipse Support</id>
+			<layout>p2</layout>
+			<url>file:///home/melanie/buildroot/pkg-config-support-for-eclipse-cdt/org.eclipse.cdt.managedbuilder.pkgconfig.update/target/repository</url>
+			<!--url>http://www.petrituononen.com/pkg-config-support-for-eclipse-cdt/update</url-->
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<!-- need maven-findbugs-2.3.2-SNAPSHOT, see http://jira.codehaus.org/browse/MFINDBUGS-122 
+				remove this when this version is released -->
+			<id>codehaus.snapshots</id>
+			<url>http://snapshots.repository.codehaus.org/</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+		<plugins>
+			<!-- Enabling Tycho -->
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<extensions>true</extensions>
+			</plugin>
+			<!-- Target file providing the context of the build -->
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<resolver>p2</resolver>
+				</configuration>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>maven-osgi-compiler-plugin</artifactId>
+					<version>${tycho-version}</version>
+					<configuration>
+						<encoding>UTF-8</encoding>
+					</configuration>
+				</plugin>
+				<plugin>
+					<!-- TODO remove workaround when https://issues.sonatype.org/browse/TYCHO-473 
+						is fixed -->
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>maven-osgi-source-plugin</artifactId>
+					<version>${tycho-version}</version>
+					<executions>
+						<execution>
+							<id>attach-source</id>
+							<phase>process-classes</phase>
+							<goals>
+								<goal>plugin-source</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>2.4.1</version>
+					<configuration>
+						<encoding>ISO-8859-1</encoding>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>1.3</version>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>findbugs-maven-plugin</artifactId>
+					<version>2.3.2-SNAPSHOT</version>
+					<configuration>
+						<findbugsXmlOutput>true</findbugsXmlOutput>
+						<failOnError>false</failOnError>
+					</configuration>
+					<executions>
+						<execution>
+							<!-- <goals> <goal>check</goal> </goals> -->
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-pmd-plugin</artifactId>
+					<version>2.5</version>
+					<configuration>
+						<sourceEncoding>utf-8</sourceEncoding>
+						<minimumTokens>100</minimumTokens>
+						<targetJdk>1.5</targetJdk>
+						<format>xml</format>
+						<failOnViolation>false</failOnViolation>
+					</configuration>
+					<executions>
+						<execution>
+							<!-- <goals> <goal>cpd-check</goal> </goals> -->
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>
