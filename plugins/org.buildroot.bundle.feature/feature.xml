@@ -2,7 +2,7 @@
 <feature
       id="org.buildroot.bundle.feature"
       label="Buildroot SDK Feature"
-      version="1.0.0.qualifier"
+      version="1.0.1.qualifier"
       provider-name="Buildroot Project">
 
    <description url="http://www.buildroot.org">
