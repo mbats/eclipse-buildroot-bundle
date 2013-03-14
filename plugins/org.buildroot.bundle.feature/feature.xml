@@ -216,6 +216,14 @@ Each party waives its rights to a jury trial in any resulting
 litigation.
    </license>
 
+   <includes
+         id="org.eclipse.cdt.managedbuilder.pkgconfig.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.buildroot.cdt.toolchain.feature"
+         version="0.0.0"/>
+
    <requires>
       <import feature="org.eclipse.cdt.launch.remote"/>
       <import feature="org.eclipse.cdt"/>
@@ -236,19 +244,5 @@ litigation.
       <import plugin="org.eclipse.cdt.launch" version="7.1.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.cdt.debug.mi.core" version="7.2.0" match="greaterOrEqual"/>
    </requires>
-
-   <plugin
-         id="org.buildroot.cdt.toolchain"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.cdt.managedbuilder.pkgconfig"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
 
 </feature>
