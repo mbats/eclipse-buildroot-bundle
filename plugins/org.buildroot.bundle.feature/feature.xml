@@ -231,7 +231,6 @@ litigation.
       <import feature="org.eclipse.cdt.gdb"/>
       <import feature="org.eclipse.cdt.launch.remote"/>
       <import feature="org.eclipse.cdt.platform"/>
-      <import feature="org.eclipse.cdt.sdk"/>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.cdt.managedbuilder.core"/>
